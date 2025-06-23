@@ -1,0 +1,6 @@
+@ACS.API_HostAddress = http://localhost:5283
+
+GET {{ACS.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
