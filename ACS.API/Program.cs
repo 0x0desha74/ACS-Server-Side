@@ -1,4 +1,7 @@
 
+using ACS.Repository.Identity;
+using Microsoft.EntityFrameworkCore;
+
 namespace ACS.API
 {
     public class Program
@@ -13,6 +16,12 @@ namespace ACS.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+            {
+                var identityConnectionString = builder.Configuration.GetConnectionString("IdentityConnection");
+                options.UseSqlServer(identityConnectionString);
+            });
 
             var app = builder.Build();
 
